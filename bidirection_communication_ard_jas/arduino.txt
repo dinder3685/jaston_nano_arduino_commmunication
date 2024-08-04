@@ -1,0 +1,40 @@
+// Define the baud rate for serial communication
+#define BAUD_RATE 9600
+
+// Define the pin for LED
+const int ledPin = 3;
+
+void setup() {
+  // Start serial communication
+  Serial.begin(BAUD_RATE);
+
+  // Set LED pin as output
+  pinMode(ledPin, OUTPUT);
+}
+
+void loop() {
+  // Read the value from the potentiometer
+  int potValue = analogRead(A1);
+
+  // Send potentiometer value to Jetson Nano
+  Serial.println(potValue);
+
+  // Wait for response from Jetson Nano
+  while (!Serial.available()) {
+    delay(10);
+  }
+
+  // Read response from Jetson Nano
+  String ledStateStr = Serial.readStringUntil('\n');
+  int ledState = ledStateStr.toInt();  // Convert string to integer
+
+  // Control LED based on received data
+  if (ledState == 0) {
+    digitalWrite(ledPin, LOW);  // Turn off LED
+  } else if (ledState == 1) {
+    digitalWrite(ledPin, HIGH); // Turn on LED
+  }
+
+  // Add a delay to control the rate of transmission
+  delay(100); // Adjust delay as needed
+}
