@@ -1,0 +1,21 @@
+import serial
+import time
+
+# Seri portu ve baud hızını tanımlayın
+ser = serial.Serial('/dev/ttyUSB0', 9600)  # '/dev/ttyUSB0' yerine doğru seri portu seçin
+time.sleep(2)  # Arduino'nun resetlenmesi için kısa bir bekleme süresi
+
+# Komutları gönderen fonksiyon
+def send_command(command):
+    ser.write(command.encode())
+
+# Komutları gönderin
+while True:
+    command = input("Enter command (1, 2, 3, 0): ")
+    if command in ['1', '2', '3', '0']:
+        send_command(command)
+    else:
+        print("Invalid command")
+
+# Bağlantıyı kapatın
+ser.close()
