@@ -5,7 +5,9 @@ Components Needed
 Jetson Nano
 Arduino (any model)
 USB cable for Arduino
+
 Potentiometer
+
 LEDs and resistors
 Breadboard and jumper wires
 Part 1: Sending Data from Arduino to Jetson Nano
