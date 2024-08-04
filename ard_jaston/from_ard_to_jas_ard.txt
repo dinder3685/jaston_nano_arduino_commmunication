@@ -1,0 +1,19 @@
+// Define the baud rate for serial communication
+#define BAUD_RATE 9600
+
+void setup() {
+  // Start serial communication
+  Serial.begin(BAUD_RATE);
+}
+
+void loop() {
+  // Sample data to send (replace with your sensor data or desired values)
+  int sensorValue = analogRead(A1);
+
+  // Send the data over serial
+  Serial.print("Sensor Value: ");
+  Serial.println(sensorValue);
+
+  // Add a delay to control the rate of transmission
+  delay(1000); // Adjust delay as needed
+}
